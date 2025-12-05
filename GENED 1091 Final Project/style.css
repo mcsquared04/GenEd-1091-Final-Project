@@ -1,0 +1,338 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: #e0e0e0;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.screen {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.screen.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Landing Screen */
+.landing-content {
+    text-align: center;
+    max-width: 900px;
+    padding: 2rem;
+}
+
+.game-title {
+    font-size: 4rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+    color: #fff;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    letter-spacing: 0.1em;
+}
+
+.game-description {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    color: #b0b0b0;
+    line-height: 1.6;
+}
+
+.mode-selection {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.mode-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #e0e0e0;
+    font-size: 1.1rem;
+}
+
+.mode-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.mode-card h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.mode-card p {
+    font-size: 0.9rem;
+    color: #b0b0b0;
+    font-style: italic;
+}
+
+/* Game Screen */
+#game-screen {
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.game-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    margin-bottom: 1rem;
+}
+
+.back-button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #e0e0e0;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+.back-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.hud {
+    display: flex;
+    gap: 2rem;
+}
+
+.hud-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hud-label {
+    font-size: 0.9rem;
+    color: #b0b0b0;
+    margin-bottom: 0.25rem;
+}
+
+.hud-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.philosopher-info {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.philosopher-info h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.philosophy-description {
+    font-size: 1.1rem;
+    color: #b0b0b0;
+    font-style: italic;
+}
+
+.game-area {
+    flex: 1;
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.lane-container {
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+    justify-content: center;
+}
+
+.lane {
+    width: 120px;
+    height: 600px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hit-zone {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: rgba(0, 255, 0, 0.2);
+    border-top: 3px solid rgba(0, 255, 0, 0.6);
+    pointer-events: none;
+}
+
+.note {
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    transition: opacity 0.1s ease;
+}
+
+.note.hit {
+    opacity: 0;
+    transform: translateX(-50%) scale(1.5);
+}
+
+.note.missed {
+    opacity: 0;
+}
+
+.note.perfect {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    box-shadow: 0 4px 20px rgba(245, 87, 108, 0.6);
+}
+
+.note.good {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    box-shadow: 0 4px 20px rgba(79, 172, 254, 0.6);
+}
+
+.instructions {
+    text-align: center;
+    margin-top: 1rem;
+    color: #b0b0b0;
+    font-size: 0.9rem;
+}
+
+/* Result Screen */
+.result-content {
+    text-align: center;
+    max-width: 600px;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.result-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #fff;
+}
+
+.result-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+.stat-label {
+    font-size: 1.2rem;
+    color: #b0b0b0;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.reflection-prompt {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border-left: 4px solid rgba(255, 255, 255, 0.3);
+}
+
+.reflection-prompt p {
+    font-size: 1.1rem;
+    color: #e0e0e0;
+    font-style: italic;
+    line-height: 1.6;
+}
+
+.result-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.action-button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    color: #e0e0e0;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.action-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .mode-selection {
+        grid-template-columns: 1fr;
+    }
+    
+    .game-title {
+        font-size: 2.5rem;
+    }
+    
+    .lane-container {
+        gap: 1rem;
+    }
+    
+    .lane {
+        width: 100px;
+        height: 500px;
+    }
+}
+
