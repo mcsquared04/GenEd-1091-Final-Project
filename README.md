@@ -12,6 +12,8 @@ House of Mysterious Clouds. 2015. “Guqin - Pingsha Luoyan 《平沙落鴈》 [
 
 Van, Bryan W, and Philip J Ivanhoe. 2023. Readings in Classical Chinese Philosophy. Third. Hackett Publishing.
 
+‌Ungern Sternberg. 2022. “The Autumn Moon over the Han Palace (Guqin Music).” YouTube. March 17, 2022. https://www.youtube.com/watch?v=09nV4EapF0U&list=RD09nV4EapF0U.
+
 ‌
 
 
